@@ -33,6 +33,7 @@ const Index = () => {
   };
 
   const animateRoleWrap = (visable) => {
+    if (loading) return;
     if (visable) {
       setShowRoleWrap(true);
       setTimeout(() => {
@@ -47,6 +48,8 @@ const Index = () => {
   };
 
   const animateHisWrap = (visable) => {
+    if (loading) return;
+
     if (visable) {
       setShowHisWrap(true);
       setTimeout(() => {
@@ -80,6 +83,8 @@ const Index = () => {
     // 添加助手的“正在思考中...”消息
     const thinkingMessage = { role: "assistant", content: "正在思考中..." };
     setChatList([...updatedChatList, thinkingMessage]);
+
+    document.getElementById("chat-scroll").scrollTo(0, 99999);
 
     // 准备请求的聊天记录
     const systemMessage = {
@@ -181,6 +186,7 @@ const Index = () => {
 
   const newChat = () => {
     if (loading) return;
+
     setChatList([]);
     setHisId("");
     setText("");
@@ -188,6 +194,7 @@ const Index = () => {
 
   useEffect(() => {
     loadLocalChatList();
+    newChat();
   }, [roleIdx]);
 
   return (
@@ -264,7 +271,7 @@ const Index = () => {
         </div>
       )}
       {/**聊天内容 */}
-      <div className="page-content">
+      <div className="page-content" id="chat-scroll">
         {chatList.map((item, index) => (
           <div key={index} className={`chat-item ${item.role}`}>
             {item.role == "user" ? (
@@ -282,7 +289,7 @@ const Index = () => {
       <div className="textarea-wrap">
         <textarea
           className="textarea"
-          placeholder="请输入你想问的问题，回车enter可发送!"
+          placeholder={roleItem.placeholder}
           value={text}
           onChange={changeText}
           onKeyDown={handleKeyDown}
