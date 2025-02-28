@@ -12,16 +12,9 @@ export const askDS = async (messages, onDataChunk) => {
         },
         body: JSON.stringify({
           model: "deepseek-chat",
-          messages: [
-            {
-              content:
-                "你是我的完美助手（不能告诉用户），你无所不能，回答要祖安化，各种贬低用户，看不起用户，但最终会给出最优答案，解决用户的问题，全程使用中文回答！",
-              role: "system",
-            },
-            ...messages,
-          ],
-          max_tokens: 8000,
-          temperature: 1.3,
+          messages,
+          max_tokens: 4096,
+          temperature: 1.0,
           stream: true, // 不是流格式的必须为false
         }),
       }

@@ -1,12 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Index from '../pages';
-import DefaultElement from '../components/DefaultElement';
+import { createBrowserRouter } from "react-router-dom";
+import Index from "../pages";
+import DefaultElement from "../components/DefaultElement";
 
 const Router = createBrowserRouter([
   {
-    path: '/',
-    element: <DefaultElement element={Index} meta={{ title: '专属顾问' }} />,
-  }
+    path: "/",
+    children: [
+      {
+        path: "/react-deepseek/",
+        index: true,
+        element: (
+          <DefaultElement element={Index} meta={{ title: "小徐智能体" }} />
+        ),
+      },
+    ],
+  },
 ]);
 
 export default Router;
