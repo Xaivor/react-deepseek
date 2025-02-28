@@ -182,6 +182,7 @@ const Index = () => {
     const key = `chatList-${roleItem.id}`;
     localStorage.removeItem(key);
     setHisList([]);
+    newChat();
   };
 
   const newChat = () => {
