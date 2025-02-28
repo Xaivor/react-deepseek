@@ -91,7 +91,15 @@ const Index = () => {
       content: roleItem.content,
       role: "system",
     };
-    const askChatList = [systemMessage, ...updatedChatList];
+    let askChatList = [systemMessage, ...updatedChatList];
+
+    // 算命大师过滤自己的结果
+    if (roleItem.id === 3 && chatList.length > 1) {
+      askChatList = [
+        systemMessage,
+        ...chatList.filter((item) => item.role === "user"),
+      ];
+    }
 
     // 记录开始时间
     const startTime = new Date().getTime();
