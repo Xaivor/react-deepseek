@@ -351,3 +351,32 @@
 .md-wrap p {
   font-size: 14px;
 }
+
+/* 移动端样式适配 */
+@media (max-width: 768px) {
+  .nav-bar-title {
+    font-size: 14px;
+  }
+
+  .role-change {
+    font-size: 10px;
+  }
+
+  .page-content {
+    height: calc(100vh - 200px);
+  }
+
+  .textarea-wrap {
+    width: 95%;
+  }
+
+  .chat-item {
+    width: 95%;
+    padding: 15px 20px;
+  }
+
+  .his-wrap {
+    min-width: 200px;
+    width: 70%;
+  }
+}

@@ -206,9 +206,9 @@ const Index = () => {
     newChat();
   }, [roleIdx]);
 
-  return (
-    <div className="page-wrap">
-      {/**navBar */}
+  // 导航栏组件
+  const NavBar = () => {
+    return (
       <div className="nav-bar">
         <div className="nav-left" onClick={() => animateHisWrap(true)}>
           <div className="iconfont icon-time-circle"></div>
@@ -221,11 +221,16 @@ const Index = () => {
           </div>
         </div>
       </div>
-      {/**角色列表设定弹窗 */}
-      {showRoleWrap && (
+    );
+  };
+
+  // 角色列表设定弹窗组件
+  const RoleListPopup = () => {
+    return (
+      showRoleWrap && (
         <div className={`role-wrap ${showRoleList ? "show" : ""}`}>
           <div
-            className={`opacity-wrap ${showHisList ? "show" : ""}`}
+            className={`opacity-wrap ${showRoleList ? "show" : ""}`}
             onClick={() => animateRoleWrap(false)}
           ></div>
           <div className="role-list">
@@ -240,9 +245,14 @@ const Index = () => {
             ))}
           </div>
         </div>
-      )}
-      {/**左侧聊天历史抽屉弹窗 */}
-      {showHisWrap && (
+      )
+    );
+  };
+
+  // 左侧聊天历史抽屉弹窗组件
+  const ChatHistoryPopup = () => {
+    return (
+      showHisWrap && (
         <div className={`role-wrap ${showHisList ? "show" : ""}`}>
           <div
             className={`opacity-wrap ${showHisList ? "show" : ""}`}
@@ -278,12 +288,17 @@ const Index = () => {
             </div>
           </div>
         </div>
-      )}
-      {/**聊天内容 */}
+      )
+    );
+  };
+
+  // 聊天内容组件
+  const ChatContent = () => {
+    return (
       <div className="page-content" id="chat-scroll">
         {chatList.map((item, index) => (
           <div key={index} className={`chat-item ${item.role}`}>
-            {item.role == "user" ? (
+            {item.role === "user" ? (
               item.content
             ) : (
               <div className="md-wrap">
@@ -294,7 +309,12 @@ const Index = () => {
           </div>
         ))}
       </div>
-      {/**聊天输入框 */}
+    );
+  };
+
+  // 聊天输入框组件
+  const ChatInput = () => {
+    return (
       <div className="textarea-wrap">
         <textarea
           className="textarea"
@@ -318,6 +338,16 @@ const Index = () => {
           )}
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div className="page-wrap">
+      <NavBar />
+      <RoleListPopup />
+      <ChatHistoryPopup />
+      <ChatContent />
+      <ChatInput />
     </div>
   );
 };
