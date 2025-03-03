@@ -16,5 +16,18 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
+    proxy: {
+      "/api": {
+        target: "https://ark.cn-beijing.volces.com/api/v3",
+        changeOrigin: true,
+        headers: {
+          // 添加额外的请求头
+          "Access-Control-Allow-Origin": "*",
+        },
+        pathRewrite: {
+          "^/api": "",
+        },
+      },
+    },
   },
 };

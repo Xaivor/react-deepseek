@@ -208,36 +208,7 @@ const Index = () => {
       </div>
     );
   };
-
-  // 聊天输入框组件
-  const ChatInput = () => {
-    return (
-      <div className="textarea-wrap">
-        <textarea
-          className="textarea"
-          placeholder={roleItem.placeholder}
-          value={text}
-          onChange={changeText}
-          onKeyDown={handleKeyDown}
-        />
-        <div className="textarea-btns">
-          <button className="text-btn" onClick={newChat}>
-            新建对话
-          </button>
-          {loading ? (
-            <button className="btn disabled" disabled>
-              思考中...
-            </button>
-          ) : (
-            <button className="btn" onClick={sendText}>
-              发送
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
-
+  
   const rolePopupRef = useRef(null);
   const hisPopupRef = useRef(null);
 
@@ -300,7 +271,29 @@ const Index = () => {
         </div>
       </Popup>
       <ChatContent />
-      <ChatInput />
+      <div className="textarea-wrap">
+        <textarea
+          className="textarea"
+          placeholder={roleItem.placeholder}
+          value={text}
+          onChange={changeText}
+          onKeyDown={handleKeyDown}
+        />
+        <div className="textarea-btns">
+          <button className="text-btn" onClick={newChat}>
+            新建对话
+          </button>
+          {loading ? (
+            <button className="btn disabled" disabled>
+              思考中...
+            </button>
+          ) : (
+            <button className="btn" onClick={sendText}>
+              发送
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
